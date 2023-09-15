@@ -8,8 +8,9 @@ const pdfRouter = Router();
 
 pdfRouter.get('/', (_: GenericRequest, res: Response, next: NextFunction) => {
   generate()
-    .then((pdf) => {
-      res.status(200).send(pdf);
+    .then(({ data }) => {
+      res.contentType('application/pdf');
+      res.send(data);
     })
     .catch((err) => {
       next(err);
