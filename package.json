@@ -1,0 +1,59 @@
+{
+  "name": "demo-dokku-chromium",
+  "version": "0.0.1",
+  "description": "Demo app to test chromium on dokku",
+  "main": "app.js",
+  "scripts": {
+    "build": "npx ts-node build.ts",
+    "lint": "npx eslint --ext .ts src/",
+    "lint-js": "eslint **/*.{ts,tsx} --ignore-pattern node_modules/",
+    "lint:tests": "npx eslint --ext .ts spec/",
+    "start": "cross-env NODE_ENV=production node ./dist",
+    "dev": "NODE_ENV=development nodemon",
+    "test": "nodemon --config ./spec/nodemon.json",
+    "test:no-reloading": "npx ts-node --files -r tsconfig-paths/register ./spec"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts, html",
+    "ignore": [
+      "src/public"
+    ],
+    "exec": "./node_modules/.bin/ts-node --files ./src"
+  },
+  "keywords": [
+    "testing-chromium"
+  ],
+  "author": "darkwilly08",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/fs-extra": "^9.0.13",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.11.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "fs-extra": "^10.1.0",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^6.0.0",
+    "js-convert-case": "^4.2.0",
+    "morgan": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
